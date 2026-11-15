@@ -42,3 +42,5 @@ next-env.d.ts
 
 # foto mentah (dioptimasi ke public/photos oleh scripts/optimize-photos.mjs)
 /_raw-photos/
+.vercel
+.env*
