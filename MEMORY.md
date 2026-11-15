@@ -52,4 +52,18 @@ Catatan DNS: domain `belfamuhammad.com` DNS-nya di Domainesia (NS `ns1/ns2.domai
 | `MEMORY.md` | File ini |
 | `BRIEF.md` | Brief terkunci: bisnis, audiens, aksi, aturan konten, batasan teknis |
 | `DESIGN.md` | Sistem desain: warna, huruf, tata letak, komponen, motion, aksesibilitas, publikasi |
+| `README.md` | Cara menjalankan proyek + susunan berkas |
+| `CREDITS.md` | Lisensi tiga foto Wikimedia |
+
+## Pembaruan 15 November 2026 — situs dibangun dan live di Vercel
+
+- **Halaman utama** `src/app/page.tsx`: hero + tujuh bagian bernomor (Three quotes, What we renovate, How the job runs, What we put in writing, Work, FAQ, Request a site visit).
+- **Elemen khas** `src/components/quote-comparison.tsx`: pembanding Penawaran A/B, delapan baris. Di desktop memakai `<table>` asli; di mobile dua daftar yang bertukar lewat tombol `aria-pressed`. Ada region `aria-live` yang membacakan pilihan, dan catatan kejujuran "Illustration only".
+- **Bagian lain:** `reveal.tsx` (IntersectionObserver berbasis waktu, 26px/620ms, stagger 60ms), `site-visit-form.tsx` (validasi per field, status demo jujur), halaman `/credits`, `sitemap.ts`, `robots.ts`, `opengraph-image.tsx` (1200×630, sudah dicek ukurannya), `icon.tsx` (64×64).
+- **Foto:** tiga foto Wikimedia, dioptimasi lewat `scripts/optimize-photos.mjs` (sharp, saturasi 0,6) jadi 192 KB / 162 KB / 45 KB. Bahan mentah di `_raw-photos/` (tidak di-commit); metadata lisensi di `scripts/photo-sources.json`.
+- **QA struktural** `scripts/qa.mjs` (puppeteer-core, Chrome headless): 320/375/768/1440 tanpa overflow, tiga gambar termuat, delapan anchor hidup, toggle A/B bekerja (`aria-pressed` + `aria-live` + lima coretan), form kosong memunculkan 4 field invalid lalu status demo saat diisi benar, enam `<details>` bisa dibuka, reduced motion tidak menyembunyikan apa pun, tanpa JavaScript konten tetap terlihat.
+- **Lighthouse di live:** mobile **100 / 100 / 100 / 100** (LCP 1,4 s, CLS 0, TBT 10 ms), desktop **100 / 100 / 100 / 100** (LCP 0,3 s).
+- **Repo GitHub:** `belfamrf/kelso-reid` (publik), `main` sinkron. **Vercel:** project `kelso-reid`, deployment produksi READY di `https://kelso-reid.vercel.app`.
+- **Subdomain menunggu DNS:** `renovation.belfamuhammad.com` sudah ditambahkan ke project Vercel. Record yang harus dibuat di Domainesia: **CNAME `renovation` → `9d018f7dbeec8a88.vercel-dns-017.com`**. Setelah aktif, jalankan `vercel domains verify renovation.belfamuhammad.com`.
+- **Belum:** review visual oleh pemilik (model sesi ini text-only), kartu share dikaitkan ke halaman studi kasus di website pribadi, dan penautan kartu meja (`live` + `caseHref`).
 
