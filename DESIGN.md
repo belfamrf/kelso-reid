@@ -128,7 +128,7 @@ Inti situs. Satu blok yang membandingkan **Penawaran A ("the cheapest quote")** 
 
 Kolom A menampilkan `Not stated` untuk baris yang tidak ditulis; kolom B menampilkan centang `check` dan satu baris penjelasan pendek.
 
-- **Desktop:** tabel dua kolom, kolom B disorot dengan latar `paper-deep`; tombol `Show A` / `Show B` meredupkan kolom yang tidak dipilih (opacity 0,45).
+- **Desktop:** tabel dua kolom; kolom yang dipilih disorot latar `paper-deep` dan garis atas `brick`. Kolom lain **tidak diredupkan** (opacity turun akan menjatuhkan kontras teks di bawah AA), cukup dibiarkan tenang.
 - **Mobile:** satu tabel yang sama tidak dipaksakan; dipakai dua daftar definisi (A dan B) yang bertukar lewat dua tombol, dengan `aria-pressed`.
 - **Animasi:** garis coret `brick` menarik dari kiri ke kanan (380ms) pada baris yang tidak tertulis di A setiap kali B dipilih. Hanya `transform`/`opacity`.
 - **Kejujuran:** di bawah blok selalu ada catatan `paper-deep`: *"Illustration only. This is not a real quote, and not a claim about any other contractor."*
